@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "omega-prime-visibility"
+authors = [
+    {name = "ika - RWTH Aachen", email = "michael.schuldes@ika.rwth-aachen.de"},
+]
+description = "Omega-Prime-Visibility: Compute Visibility of Objects Polygons"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+keywords = ["omega-format", "osi", "open-simulation-interface", "simulation", "automated-driving", "traffic"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    'shapely',
+    'numpy',
+    'polars',
+    'tqdm',
+    'visilibity',
+    'omega-prime'
+
+]
+version = "0.0.1"
+
+[project.urls]
+Homepage = "https://github.com/ika-rwth-aachen/omega-prime"
+Repository = "https://github.com/ika-rwth-aachen/omega-prime"
+
+[project.optional-dependencies]
+test = ['ruff', 'pdoc3', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks', 'nbval','ipywidgets']
+
+[tool.ruff]
+lint.ignore = ["E741", "E701", "E501", "I001"]
+target-version = "py311"
+line-length = 120
+lint.select = [
+    "F401",  # Unused imports
+    "F841",  # Unused local variables
+    "F821",  # Undefined names
+    "E501",  # Line length violations
+    "SIM101", # Simplify unnecessary if-else blocks
+    "SIM102", # Simplify return or yield statements
+    "SIM103", # Simplify list/set/dict comprehensions
+    "UP",
+    "I",
+]
+lint.isort.combine-as-imports = true
+
+[tool.pytest.ini_options]
+addopts = "--nbval --codeblocks --cov=omega_prime_visibility --cov-report=xml --cov-report=html --cov-report=term-missing"
+testpaths = [
+    "tutorial.ipynb",
+    "README.md"
+]
+log_cli = true
