@@ -187,7 +187,7 @@ def get_visibility_df(
     return pl.concat(
         [
             get_visibility_df_for_frame(df, ego_idx, frame=f, static_occluder_polys=static_occluder_polys)
-            for f in tqdm(df.filter(idx=ego_idx)["frame"].unique(), show_progress)
+            for f in tqdm(df.filter(idx=ego_idx)["frame"].unique(), disable=show_progress, leave=False)
         ]
     )
 
