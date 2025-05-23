@@ -40,7 +40,11 @@ def polar_angle(coordinate, origin):
 
 
 def get_visibility_df_for_frame(
-    df: pl.DataFrame, ego_idx: int, frame: int, static_occluder_polys: None | list[shapely.Geometry] = None, epsilon:float=EPSILON
+    df: pl.DataFrame,
+    ego_idx: int,
+    frame: int,
+    static_occluder_polys: None | list[shapely.Geometry] = None,
+    epsilon: float = EPSILON,
 ) -> pl.DataFrame:
     if static_occluder_polys is None:
         static_occluder_polys = []
@@ -173,17 +177,28 @@ def get_visibility_df_for_frame(
     return visibility_df
 
 
-def get_visibility_df(df: pl.DataFrame, ego_idx: int, static_occluder_polys: None | list[shapely.Geometry] = None, epsilon:float=EPSILON) -> pl.DataFrame: 
+def get_visibility_df(
+    df: pl.DataFrame,
+    ego_idx: int,
+    static_occluder_polys: None | list[shapely.Geometry] = None,
+    epsilon: float = EPSILON,
+    show_progress: bool | None = True,
+) -> pl.DataFrame:
     return pl.concat(
         [
             get_visibility_df_for_frame(df, ego_idx, frame=f, static_occluder_polys=static_occluder_polys)
-            for f in tqdm(df.filter(idx=ego_idx)["frame"].unique())
+            for f in tqdm(df.filter(idx=ego_idx)["frame"].unique(), show_progress)
         ]
     )
 
 
 @omega_prime.metrics.metric(computes_properties=["visibility"])
-def visibility(df: pl.LazyFrame, ego_idx: int, static_occluder_polys: None | list[shapely.Geometry] = None, epsilon:float=EPSILON) -> pl.LazyFrame:
+def visibility(
+    df: pl.LazyFrame,
+    ego_idx: int,
+    static_occluder_polys: None | list[shapely.Geometry] = None,
+    epsilon: float = EPSILON,
+) -> pl.LazyFrame:
     eager_df = df["idx", "x", "y", "polygon"].collect()
-    vis_df = get_visibility_df(eager_df, ego_idx, static_occluder_polys, epsilon)
-    return df, {'visibility': pl.LazyFrame(vis_df)}
+    vis_df = get_visibility_df(eager_df, ego_idx, static_occluder_polys, epsilon, show_porgress=False)
+    return df, {"visibility": pl.LazyFrame(vis_df)}

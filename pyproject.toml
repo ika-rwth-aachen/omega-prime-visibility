@@ -35,8 +35,8 @@ dependencies = [
 version = "0.0.1"
 
 [project.urls]
-Homepage = "https://github.com/ika-rwth-aachen/omega-prime"
-Repository = "https://github.com/ika-rwth-aachen/omega-prime"
+Homepage = "https://github.com/ika-rwth-aachen/omega-prime-visibility"
+Repository = "https://github.com/ika-rwth-aachen/omega-prime-visibility"
 
 [project.optional-dependencies]
 test = ['ruff', 'pdoc3', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks', 'nbval','ipywidgets']
