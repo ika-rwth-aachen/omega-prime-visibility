@@ -189,7 +189,7 @@ def get_visibility_df(
             get_visibility_df_for_frame(df, ego_idx, frame=f, static_occluder_polys=static_occluder_polys)
             for f in tqdm(df.filter(idx=ego_idx)["frame"].unique(), disable=show_progress, leave=False)
         ]
-    )
+    ).join(df['frame','total_nanos'], on='frame')['frame','total_nanos','idx','occluder_idxs','static_occluder_idxs','visibility']
 
 
 @omega_prime.metrics.metric(computes_properties=["visibility"])
