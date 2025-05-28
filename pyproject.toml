@@ -38,6 +38,10 @@ version = "0.0.1"
 Homepage = "https://github.com/ika-rwth-aachen/omega-prime-visibility"
 Repository = "https://github.com/ika-rwth-aachen/omega-prime-visibility"
 
+[project.entry-points.'omega_prime.plugins.metrics']
+visibility = 'omega_prime_visibility'
+
+
 [project.optional-dependencies]
 test = ['ruff', 'pdoc3', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks', 'nbval','ipywidgets']
 

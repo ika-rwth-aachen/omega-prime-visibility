@@ -9,9 +9,9 @@ from tqdm.auto import tqdm
 import omega_prime
 
 
-EPSILON = 1e-3
+EPSILON = 1e-6
 
-__all__ = ["get_visibility_df", "get_visibility_df_for_frame", "visibility"]
+__all__ = ["get_visibility_df", "get_visibility_df_for_frame", "visibility", "metrics"]
 
 
 def unit_vector(vector: np.ndarray):
@@ -184,12 +184,13 @@ def get_visibility_df(
     epsilon: float = EPSILON,
     show_progress: bool | None = True,
 ) -> pl.DataFrame:
-    return pl.concat(
+    res = pl.concat(
         [
             get_visibility_df_for_frame(df, ego_idx, frame=f, static_occluder_polys=static_occluder_polys)
             for f in tqdm(df.filter(idx=ego_idx)["frame"].unique(), disable=show_progress, leave=False)
         ]
-    ).join(df['frame','total_nanos'], on='frame')['frame','total_nanos','idx','occluder_idxs','static_occluder_idxs','visibility']
+    ).join(df['frame','total_nanos','idx'], on=['frame','idx'])['frame','total_nanos','idx','occluder_idxs','static_occluder_idxs','visibility']
+    return res
 
 
 @omega_prime.metrics.metric(computes_properties=["visibility"])
@@ -202,3 +203,7 @@ def visibility(
     eager_df = df["idx", "x", "y", "polygon"].collect()
     vis_df = get_visibility_df(eager_df, ego_idx, static_occluder_polys, epsilon, show_porgress=False)
     return df, {"visibility": pl.LazyFrame(vis_df)}
+
+metrics = [
+    visibility
+]
