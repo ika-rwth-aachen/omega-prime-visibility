@@ -43,7 +43,7 @@ visibility = 'omega_prime_visibility'
 
 
 [project.optional-dependencies]
-test = ['ruff', 'pdoc3', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks', 'nbval','ipywidgets']
+test = ['ruff', 'pdoc3', 'pre-commit', 'pytest', 'pytest-sugar', 'pytest-env','pytest-cov','pytest-progress','pytest-codeblocks', 'nbval','ipywidgets','altair', 'vegafusion[embed]>=1.5.0', 'vl-convert-python']
 
 [tool.ruff]
 lint.ignore = ["E741", "E701", "E501", "I001"]
