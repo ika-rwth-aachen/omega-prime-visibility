@@ -24,7 +24,7 @@ contourpy==1.3.2
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
-fonttools==4.58.1
+fonttools==4.58.2
     # via matplotlib
 grpclib==0.4.8
     # via betterproto2
@@ -46,7 +46,7 @@ kiwisolver==1.4.8
     # via matplotlib
 loguru==0.7.3
     # via lxd-io
-lxd-io==0.4.6
+lxd-io==0.4.7
     # via omega-prime
 lxml==5.4.0
     # via
@@ -76,11 +76,11 @@ multidict==6.4.4
     # via grpclib
 mypy-extensions==1.1.0
     # via typing-inspect
-narwhals==1.41.1
+narwhals==1.42.1
     # via altair
 networkx==3.5
     # via omega-prime
-numpy==2.2.6
+numpy==2.3.0
     # via
     #   omega-prime-visibility (pyproject.toml)
     #   betterosi
@@ -94,7 +94,7 @@ numpy==2.2.6
     #   scipy
     #   shapely
     #   xarray
-omega-prime==0.1.15
+omega-prime==0.1.16
     # via omega-prime-visibility (pyproject.toml)
 packaging==25.0
     # via
@@ -209,7 +209,7 @@ tzdata==2025.2
     # via pandas
 visilibity==1.0.10
     # via omega-prime-visibility (pyproject.toml)
-xarray==2025.4.0
+xarray==2025.6.1
     # via omega-prime
 zstandard==0.23.0
     # via mcap
