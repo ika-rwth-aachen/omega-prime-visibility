@@ -64,6 +64,19 @@ returns
 |     432 |     4 | [1 2 5]         | []                     |         0    |
 |     432 |     5 | [1 2]           | []                     |         0    |
 
+# Algorithm
+For every point in time compute a visibility for every object from the perspective of an ego vehicle based on 2D-brids-eye-view geometry:
+
+1. Assume point of obersvation to be the centerpoint of the polygon of the ego vehicle
+2. Take polygons of all other objects and create visibility polygon using [VisiLibity1](https://karlobermeyer.github.io/VisiLibity1/) through [PyVisiLibity](https://github.com/tsaoyu/PyVisiLibity).
+3. Create `shapely.STRTree` from the same polygons
+4. For every object we want the visibilty for:
+    1. Compute the angle range of the object from the perspective of the ego: e.g., The vectors from the perspective point to all points of the polygon have a angle between 90° and 100°. This give a maximum viewable angle-range of 10°.
+    2. Compute the visible sections of the polygon by intersecting the polygon with the visibility polygon (speed up by using the STRTree)
+    3. Compute the angle-range of all visibile segments of the polygon: e.g., `[90°,92°] and [98°-100°]` are the resulting ranges. This gives a total viewable angle range of `2°+2°=4°`
+    4. Divide the viewable angle range by the maximum angle range resulting in the visibility between 0 and 1: e.g., `4°/10°=0.4`.
+    4. Create the convex hull of the polygon and the persepctive point and find all objects that are interesecting this hull. These are classified as the occluders. 
+
 
 # Notice
 
