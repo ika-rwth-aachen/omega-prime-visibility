@@ -1,3 +1,5 @@
+<img src="https://github.com/ika-rwth-aachen/omega-prime-visibility/blob/main/omega-prime-visibility.svg?raw=True" align="left" height=120px style="margin:10px;">
+
 # Omega-Prime-Visibility
 
 This packages uses [VisiLibity1](https://karlobermeyer.github.io/VisiLibity1/) through [visilibity](https://pypi.org/project/VisiLibity/) (LGPL) to comptue the visibility of MovingObjects of [omega-prime](https://github.com/ika-rwth-aachen/omega-prime)-Recordings. For every object it computes the visibilty as a float (`1.0` for fully visible and `0.0` for not visible) (assuming 2D-brids-eye-view geometries) from the point of view of one object (assumed as a point in the center of the object). In addition the objects occluding the view (occluders) are computed.
