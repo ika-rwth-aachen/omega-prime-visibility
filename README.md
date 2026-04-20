@@ -1,4 +1,4 @@
-<img src="https://github.com/ika-rwth-aachen/omega-prime-visibility/blob/main/omega-prime-visibility.svg?raw=True" align="left" height=120px style="margin:10px;">
+<img src="https://github.com/ika-rwth-aachen/omega-prime-visibility/blob/main/logo/omega-prime-visibility.svg?raw=True" align="left" height=120px style="margin:10px;">
 
 # Omega-Prime-Visibility
 
@@ -79,6 +79,20 @@ For every point in time compute a visibility for every object from the perspecti
     4. Divide the viewable angle range by the maximum angle range resulting in the visibility between 0 and 1: e.g., `4°/10°=0.4`.
     4. Create the convex hull of the polygon and the persepctive point and find all objects that are interesecting this hull. These are classified as the occluders. 
 
+
+# Acknowledgements
+
+This package is developed as part of the [SYNERGIES project](https://synergies-ccam.eu).
+
+<img src="https://raw.githubusercontent.com/ika-rwth-aachen/omega-prime-visibility/refs/heads/main/logo/synergies.svg"
+style="width:2in" />
+
+
+
+Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or European Climate, Infrastructure and Environment Executive Agency (CINEA). Neither the European Union nor the granting authority can be held responsible for them. 
+
+<img src="https://raw.githubusercontent.com/ika-rwth-aachen/omega-prime-visibility/refs/heads/main/logo/funded_by_eu.svg"
+style="width:4in" />
 
 # Notice
 
